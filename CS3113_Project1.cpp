@@ -75,20 +75,25 @@ void writeToMemory(vector<int> &main_memory, vector<PCB> &processes, int main_me
 // ----------------------------------------------------------------------
 void writeMemoryToFile(const vector<int> &main_memory, const string &filename)
 {
+    /*
     ofstream fout(filename);
     if (!fout)
     {
         cerr << "Error: Unable to open file " << filename << endl;
         return;
     }
-
+    
     fout << "Main Memory:\n";
+    */
+
     for (size_t i = 0; i < main_memory.size(); ++i)
     {
-        fout << i << ": " << main_memory[i] << endl;
+        //fout << i << ": " << main_memory[i] << endl;
+
+        cout << i << ": " << main_memory[i] << endl;
     }
 
-    fout.close();
+    //fout.close();
 }
 
 // ----------------------------------------------------------------------
@@ -123,6 +128,8 @@ void executeProcesses(vector<int> &main_memory, const string &filename)
         int data_base = instruction_base + numInstructions;
 
         fout << "Executing Process ID: " << pid << endl;
+
+        cout << "Executing Process ID: " << pid << endl;
 
         state = 3; // Set process state to RUNNING
 
@@ -180,7 +187,7 @@ void executeProcesses(vector<int> &main_memory, const string &filename)
         }
 
         state = 4; // TERMINATED
-
+        /*
         fout << "\nPCB Contents (Stored in Main Memory):\n";
         fout << "Process ID: " << pid << endl;
         fout << "State: TERMINATED" << endl;
@@ -194,11 +201,26 @@ void executeProcesses(vector<int> &main_memory, const string &filename)
         fout << "Main Memory Base: " << memory_index << endl;
         fout << "Total CPU Cycles Consumed: " << cpuCyclesUsed << endl;
         fout << "--------------------------------------\n";
+        */
+
+        cout << "\nPCB Contents (Stored in Main Memory):\n";
+        cout << "Process ID: " << pid << endl;
+        cout << "State: TERMINATED" << endl;
+        cout << "Program Counter: " << programCounter << endl;
+        cout << "Instruction Base: " << instruction_base << endl;
+        cout << "Data Base: " << data_base << endl;
+        cout << "Memory Limit: " << memoryLimit << endl;
+        cout << "CPU Cycles Used: " << cpuCyclesUsed << endl;
+        cout << "Register Value: " << registerValue << endl;
+        cout << "Max Memory Needed: " << memoryLimit << endl;
+        cout << "Main Memory Base: " << memory_index << endl;
+        cout << "Total CPU Cycles Consumed: " << cpuCyclesUsed << endl;
+        //cout << "--------------------------------------\n";
 
         memory_index += 10 + numInstructions + numInstructions * 2;
     }
 
-    fout.close();
+    //fout.close();
 }
 
 // ----------------------------------------------------------------------
