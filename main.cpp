@@ -13,6 +13,7 @@ struct PCB
     int max_memory_needed;
     int num_of_instructions;
     vector<tuple<int, vector<int>>> instructions;
+    // this is a vector, the vector is made of a tuple which has a op code and a vector that will hold the data for the instruction
 };
 
 // ----------------------------------------------------------------------
